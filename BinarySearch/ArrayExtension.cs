@@ -1,4 +1,5 @@
 ﻿using System;
+#pragma warning disable
 
 namespace BinarySearchTask
 {
@@ -26,7 +27,28 @@ namespace BinarySearchTask
         /// </example>
         public static int? BinarySearch(int[]? source, int value)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            int left = 0;
+            int right = source.Length - 1;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (source[mid] == value)
+                    return mid;
+
+                if (source[mid] < value)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+
+            return null;
         }
     }
 }
